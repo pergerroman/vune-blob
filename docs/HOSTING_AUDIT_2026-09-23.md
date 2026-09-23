@@ -39,8 +39,9 @@ Estas confirmaciones son posteriores a la auditoría original y no fueron verifi
 | `json` | Activado en PHP 8.4, según confirmación del usuario | La extensión también estaba habilitada en la configuración PHP 7.4 observada originalmente. |
 | PHP CLI | Confirmado | cPanel muestra `/usr/local/bin/php` como ejemplo de ejecución. Una tarea Cron existente utiliza `/usr/bin/php`. |
 | Cron | Confirmado | La interfaz de administración de tareas Cron está disponible. |
-| `.htaccess` | Disponible | Existe `/home/estudi76/public_html/.htaccess`, con tamaño de 0 bytes al momento de la revisión. |
-| Reescritura de rutas | No confirmado | El `.htaccess` encontrado no contiene reglas y no se ejecutó una prueba para respetar el alcance de solo lectura. |
+| `.htaccess` | Confirmado | Apache aceptó y aplicó un `.htaccess` dentro de una carpeta aislada del subdominio. |
+| `Options -Indexes` | Confirmado | El acceso directo al directorio temporal respondió con estado `403`. |
+| `mod_rewrite` | Confirmado | La ruta temporal `/probe` ejecutó una `RewriteRule` y respondió `302` hacia la raíz del subdominio. |
 | `blob.estudiovune.com` | Creado, según confirmación del usuario | No figuraba durante la auditoría original; su creación fue informada posteriormente por el usuario. |
 | Raíz documental de la aplicación | Confirmada por el usuario | `/home/estudi76/public_html/blob.estudiovune.com`. |
 | HTTPS | Confirmado | `https://blob.estudiovune.com/` responde mediante HTTP/2 con estado `200`. |
@@ -52,14 +53,14 @@ Estas confirmaciones son posteriores a la auditoría original y no fueron verifi
 
 El hosting ofrece los componentes necesarios para ejecutar el backend en PHP 8.4 y dispone de PHP CLI y Cron. La versión y las extensiones requeridas quedaron activadas después de la auditoría original, según confirmación del usuario.
 
-La disponibilidad de `.htaccess` está confirmada, pero no el funcionamiento de `mod_rewrite`. La verificación definitiva requiere una prueba controlada con una regla temporal o con el front controller real de la aplicación.
+La disponibilidad de `.htaccess`, `Options -Indexes` y `mod_rewrite` quedó confirmada mediante una prueba controlada dentro de una carpeta temporal aislada. El front controller definitivo deberá volver a comprobarse durante el despliegue de la aplicación.
 
 El subdominio fue creado después de la auditoría y utiliza `/home/estudi76/public_html/blob.estudiovune.com` como raíz documental.
 
 ## Pendientes antes del despliegue
 
 1. Confirmar que PHP-FPM y PHP CLI utilizan PHP 8.4 y zonas horarias compatibles.
-2. Probar `.htaccess`, `mod_rewrite`, el front controller y `Options -Indexes`.
+2. Probar el front controller definitivo de la aplicación.
 3. Definir y crear el almacenamiento privado fuera de `public_html`.
 4. Confirmar permisos efectivos entre PHP-FPM, Cron y el mecanismo de despliegue.
 5. Confirmar límites efectivos de carga y política de backups del proveedor.

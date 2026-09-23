@@ -82,6 +82,7 @@ Datos confirmados:
 - `blob.estudiovune.com` creado como dominio público principal de la aplicación.
 - raíz documental de la aplicación en `/home/estudi76/public_html/blob.estudiovune.com`.
 - HTTPS activo en `blob.estudiovune.com` con certificado Let’s Encrypt.
+- `.htaccess`, `mod_rewrite` y `Options -Indexes` confirmados mediante una prueba aislada.
 - límite aproximado de 200.000 inodos.
 - recursos aproximados:
   - 2 GB RAM;
@@ -108,7 +109,7 @@ Pendientes de confirmar antes del despliegue definitivo:
 - política de backups;
 - mantenimiento/parcheado aplicado por BlueHosting a MariaDB 10.6;
 - restricciones concretas de Cron;
-- posibilidad de configurar headers y routing mediante `.htaccess`.
+- cabeceras y routing definitivos del front controller mediante `.htaccess`.
 
 No asumir capacidades no comprobadas.
 

@@ -2,7 +2,7 @@
 
 ## Estado
 
-Destino previsto: `blob.estudiovune.com`, con raíz documental en `/home/estudi76/public_html/blob.estudiovune.com`, sobre hosting compartido Linux con cPanel, Apache 2.4, PHP 8.4, PHP-FPM y MariaDB 10.6. HTTPS con certificado Let’s Encrypt, las extensiones requeridas y la escritura PHP fuera de `public_html` están confirmados. Todavía no se debe desplegar contenido real.
+Destino previsto: `blob.estudiovune.com`, con raíz documental en `/home/estudi76/public_html/blob.estudiovune.com`, sobre hosting compartido Linux con cPanel, Apache 2.4, PHP 8.4, PHP-FPM y MariaDB 10.6. HTTPS con certificado Let’s Encrypt, las extensiones requeridas, la escritura PHP fuera de `public_html`, `.htaccess`, `mod_rewrite` y `Options -Indexes` están confirmados. Todavía no se debe desplegar contenido real.
 
 La evidencia del entorno relevada en cPanel está registrada en [`HOSTING_AUDIT_2026-09-23.md`](HOSTING_AUDIT_2026-09-23.md).
 
@@ -40,7 +40,7 @@ Antes de implementar o desplegar:
 4. Verificar que PHP-FPM y CLI usan versión y timezone compatibles.
 5. Crear un archivo temporal fuera de `public_html`, leerlo, renombrarlo y borrarlo.
 6. Confirmar permisos entre PHP-FPM, FTP/SFTP y Cron.
-7. Probar rewrite a `index.php`, headers y `Options -Indexes`.
+7. Probar el rewrite definitivo a `index.php` y las cabeceras de la aplicación.
 8. Verificar la renovación automática del certificado Let’s Encrypt antes de su vencimiento.
 9. Verificar límites efectivos de Apache y PHP con requests controlados.
 10. Confirmar política de backup, espacio e inodos.
